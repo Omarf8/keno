@@ -4,15 +4,21 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+import javafx.event.Event;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class SceneManager {
     public Stage primaryStage;
@@ -53,9 +59,10 @@ public class SceneManager {
         Menu menu = new Menu("Menu");
         MenuItem rules = new MenuItem("Rules");
         rules.setOnAction((e) -> {
-            primaryStage.setScene(mapScenes.get("rules"));
+            rulesPopup();
         });
         MenuItem odds = new MenuItem("Odds");
+        odds.setOnAction(e->{oddsPopup(1);});
         MenuItem newLook = new MenuItem("New Look");
         newLook.setOnAction((e) -> {
             this.defaultLook = !defaultLook;
@@ -133,9 +140,10 @@ public class SceneManager {
         // Creating MenuItems
         MenuItem rule = new MenuItem("Rules");
         rule.setOnAction(e -> {
-            primaryStage.setScene(mapScenes.get("rules"));
+            rulesPopup();
         });
         MenuItem odd = new MenuItem("Odds");
+        odd.setOnAction(e->{oddsPopup(1);});
         // Add setOnAction functionality
         MenuItem ex = new MenuItem("Exit");
         ex.setOnAction((e) -> {
@@ -439,7 +447,7 @@ public class SceneManager {
         a.showAndWait().ifPresent(e -> {if (e == ButtonType.YES);});
     }
 
-    public void oddsPopupScene(int c) {
+    public void oddsPopup(int c) {
         BorderPane pane = new BorderPane();
         if(this.defaultLook) {
             pane.setStyle("-fx-background-color: " + mangoColor);

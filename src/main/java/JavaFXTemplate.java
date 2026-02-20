@@ -26,31 +26,6 @@ public class JavaFXTemplate extends Application {
 		// TODO Auto-generated method stub
         GameControl gameControl = new GameControl(primaryStage);
         primaryStage.setTitle("Keno");
-		
-//		 Rectangle rect = new Rectangle (100, 40, 100, 100);
-//	     rect.setArcHeight(50);
-//	     rect.setArcWidth(50);
-//	     rect.setFill(Color.VIOLET);
-//
-//	     RotateTransition rt = new RotateTransition(Duration.millis(5000), rect);
-//	     rt.setByAngle(270);
-//	     rt.setCycleCount(4);
-//	     rt.setAutoReverse(true);
-//	     SequentialTransition seqTransition = new SequentialTransition (
-//	         new PauseTransition(Duration.millis(500)),
-//	         rt
-//	     );
-//	     seqTransition.play();
-//
-//	     FadeTransition ft = new FadeTransition(Duration.millis(5000), rect);
-//	     ft.setFromValue(1.0);
-//	     ft.setToValue(0.3);
-//	     ft.setCycleCount(4);
-//	     ft.setAutoReverse(true);
-//
-//	     ft.play();
-//	     BorderPane root = new BorderPane();
-//	     root.setCenter(rect);
 
         // Needed to display
         primaryStage.setScene(gameControl.scenes.getMapScenes().get("mainmenu"));

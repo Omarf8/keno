@@ -4,13 +4,10 @@ import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
+import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.shape.Circle;
@@ -448,10 +445,36 @@ public class SceneManager {
         StackPane root = new StackPane(background, popup);
         mapScenes.put("rules", new Scene(root, 1000,700));
     }
-//
-//    public void oddsPopupScene() {
-//
-//    }
+
+    public void oddsPopupScene(int c) {
+        BorderPane pane = new BorderPane();
+        if(this.defaultLook) {
+            pane.setStyle("-fx-background-color: " + mangoColor);
+        }
+        else {
+            pane.setStyle("-fx-background-color: " + grapeColor);
+        }
+        Text title = new Text("Odds:");
+        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+        Text description = new Text("10 spot game: Overall odds 1 in 9.05\n match          prize\n   10       $100,000\n    9      	 $4,250\n    8      	 $450\n    7    	 $40\n    6 	 	$15\n    5           $2\n    0           $5\n"
+                + "8 spot game: Overall odds 1 in 9.77\n match          prize\n    9          $30,000\n    8      	 $3,000\n    7      	 $150\n    6    	 $25\n    5 		 $6\n    4           $1\n"+
+                "4 spot game: Overall odds 1 in 3.86\n match          prize\n    4              $75\n    3             $5\n    1             $1\n"
+                + "1 spot game: Overall odds 1 in 4.00\n match          prize\n    1               $1\n"+"");
+
+        description.setWrappingWidth(250);
+        VBox popup = new VBox( createVerticalGap(10),title,createVerticalGap(10), description);
+        pane.setCenter(popup);
+        popup.setAlignment(Pos.TOP_CENTER);
+        popup.setPadding(new Insets(30));
+        Alert a = new Alert(Alert.AlertType.NONE,null,ButtonType.OK);
+        a.setTitle("INFO:ODDS");
+        a.setHeaderText(null);
+        a.getDialogPane().setContent(pane);
+        a.setWidth(250);
+        a.setGraphic(null);
+        a.setOnCloseRequest(e->{a.close();});
+        a.showAndWait().ifPresent(e -> {if (e == ButtonType.YES);});
+    }
 
     public void changeLook() {
         // Change all Scene backgrounds to either mango or grape

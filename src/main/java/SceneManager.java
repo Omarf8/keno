@@ -84,14 +84,14 @@ public class SceneManager {
 
     public Pane createBackgroundPane() {
         // Background Pane used for circles on the main menu screen
-    	Image mango = new Image("/mango_fruit.gif", true);
-
-    	ImageView iv1 = new ImageView();
+        Image mango = new Image("/mango_fruit.gif", true);
+        Image grape = new Image("/grape_fruit.png",true);
+        ImageView iv1 = new ImageView();
         iv1.setImage(mango);
-    	iv1.setX(650);
-    	iv1.setY(270);
-    	iv1.setFitWidth(300);
-    	iv1.setPreserveRatio(true);
+        iv1.setX(650);
+        iv1.setY(270);
+        iv1.setFitWidth(300);
+        iv1.setPreserveRatio(true);
 
         Pane background = new Pane();
         if(defaultLook) {
@@ -110,6 +110,18 @@ public class SceneManager {
         }
         else {
             // Stuff for the grape background goes here
+            iv1.setImage(grape);
+            Circle c1 = new Circle(195+50, 80, 15, Color.web("#AA3ED9"));
+            Circle c2 = new Circle(70+50, 195, 25, Color.web("#B780CE"));
+            Circle c3 = new Circle(150+50, 500, 30, Color.web("#AA3ED9"));
+            Circle c4 = new Circle(190+50, 670,15, Color.web("#B780CE"));
+            Circle c5 = new Circle(280+50, 400,8, Color.web("#AA3ED9"));
+            // Right side circles
+            Circle c6 = new Circle(575+250, 155, 20, Color.web("#B780CE"));
+            Circle c7 = new Circle(460+250, 320, 10, Color.web("#AA3ED9"));
+            Circle c8 = new Circle(525+250, 600, 20, Color.web("#B780CE"));
+            background.getChildren().addAll(c1, c2, c3, c4, c5, c6, c7, c8,iv1);
+            background.setStyle("-fx-background-color: " + grapeColor + ";");
             background.setStyle("-fx-background-color: " + grapeColor + ";");
         }
 

@@ -11,4 +11,4 @@ This project is a fully functional implementation of the popular lottery game, K
 
 | Mango Theme | Grape Theme |
 | :---: | :---: |
-| <img src="https://github.com/user-attachments/assets/b0950089-40af-4036-8c1c-597de75871ac" width="400" /> | <img src="https://github.com/user-attachments/assets/15c85a9c-da57-4696-8985-09cc7c8a5cc7" width="400" /> |
+| <img alt="Mango Theme Image" src="https://github.com/user-attachments/assets/b0950089-40af-4036-8c1c-597de75871ac" width="400" /> | <img alt="Grape Theme Image" src="https://github.com/user-attachments/assets/15c85a9c-da57-4696-8985-09cc7c8a5cc7" width="400" /> |

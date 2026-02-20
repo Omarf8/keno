@@ -37,7 +37,6 @@ public class SceneManager {
         this.end = new GameOver();
         this.defaultLook = true;
         // Create all scenes and add them to the HashMap
-        rulesPopupScene();
         mainMenuScene();
         betScene();
         drawScene();
@@ -408,42 +407,36 @@ public class SceneManager {
         mapScenes.put("gameover", new Scene(root, 1000,700));
     }
 
-    public void rulesPopupScene() {
-        Pane background = new Pane();
-        // Background color
-        background.setStyle("-fx-background-color: " + mangoColor);
-
-        // Text Area for the rules
+    public void rulesPopup(){
+        BorderPane pane = new BorderPane();
+        if(this.defaultLook) {
+            pane.setStyle("-fx-background-color: " + mangoColor);
+        }
+        else {
+            pane.setStyle("-fx-background-color: " + grapeColor);
+        }
         Text title = new Text("Rules");
-        title.setStyle("-fx-font-size: 40px; -fx-font-weight: bold;");
+        title.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
         Text description = new Text("1. Decide how much to play per draw. Each play costs $1. Play for $2 to double your prize; play for $3 to triple your prize and so on up to $10 per play.\n\n" +
                 "2. Select how many consecutive draws to play. Pick up to 4.\n\n" +
                 "3. Select how many numbers to match from 1, 4, 8 or 10. In Keno, these are called Spots. The number of Spots you choose and the amount you play per draw will determine the amount you could win.\n\n" +
                 "4. Pick as many numbers as you did Spots. You can select numbers from 1 to 80 or choose Quick Select and let the computer terminal randomly pick some or all of these numbers for you.");
         description.setStyle("-fx-font-size: 20px;");
-        description.setWrappingWidth(800);
-
-        // Button to close
-        Button close = new Button("Close");
-        close.setOnAction(e -> {
-            primaryStage.setScene(mapScenes.get(currScene)); // Return to the original scene
-        });
-        close.setStyle("-fx-text-fill: red; " +
-                "-fx-font-size: 20px;" +
-                "-fx-border-color: black; " +
-                "-fx-border-width: 2px; " +
-                "-fx-border-radius: 5; " +
-                "-fx-background-radius: 3; " +
-                "-fx-background-insets: 2;");
-        HBox hbClose = new HBox(10, close);
-        hbClose.setAlignment(Pos.CENTER_RIGHT);
-
-        VBox popup = new VBox(createVerticalGap(50), title, createVerticalGap(60), description, createVerticalGap(170), hbClose);
+        description.setWrappingWidth(600);
+        VBox popup = new VBox(createVerticalGap(10), title, createVerticalGap(60), description);
         popup.setAlignment(Pos.TOP_CENTER);
         popup.setPadding(new Insets(30));
 
-        StackPane root = new StackPane(background, popup);
-        mapScenes.put("rules", new Scene(root, 1000,700));
+        pane.setCenter(popup);
+
+        Alert a = new Alert(Alert.AlertType.NONE,null,ButtonType.OK);
+        a.setTitle("INFO:RULES");
+        a.setHeaderText(null);
+        a.getDialogPane().setContent(pane);
+        a.setWidth(250);
+        a.setGraphic(null);
+        a.setOnCloseRequest(e->{a.close();});
+        a.showAndWait().ifPresent(e -> {if (e == ButtonType.YES);});
     }
 
     public void oddsPopupScene(int c) {
